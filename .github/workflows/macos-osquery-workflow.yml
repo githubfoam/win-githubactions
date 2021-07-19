@@ -15,12 +15,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: "brew update"
-        run: brew update          
+        run: brew update     
+      - name: "check on brew version"
+        run: brew --version               
       - name: "install osquery"
         run: |
             chmod +x /scripts/install_osquery.sh
-            sh /scripts/install_osquery.sh
-        run: brew --version   #Homebrew 2.5.12   
+            sh /scripts/install_osquery.sh 
       - name: "brew cask list"
         run:   brew list --cask #Warning: Calling brew cask list is deprecated! Use brew list [--cask] instead.
       - name: "brew list --formula"
