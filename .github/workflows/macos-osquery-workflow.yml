@@ -23,8 +23,8 @@ jobs:
             pwd
             ls -la scripts
             # ls -lahR ~/
-            chmod +x /scripts/install_osquery.sh
-            # sh /scripts/install_osquery.sh 
+            chmod +x scripts/install_osquery.sh
+            sh scripts/install_osquery.sh 
       - name: "brew cask list"
         run:   brew list --cask #Warning: Calling brew cask list is deprecated! Use brew list [--cask] instead.
       - name: "brew list --formula"
