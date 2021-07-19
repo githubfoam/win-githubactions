@@ -20,6 +20,8 @@ jobs:
         run: brew --version               
       - name: "install osquery"
         run: |
+            pwd
+            ls -lahR ~/
             chmod +x /scripts/install_osquery.sh
             sh /scripts/install_osquery.sh 
       - name: "brew cask list"
