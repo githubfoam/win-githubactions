@@ -14,13 +14,12 @@ jobs:
       steps:
       - name: Checkout
         uses: actions/checkout@v1
+      - name: "brew update"
+        run: brew update          
       - name: "install osquery"
         run: |
-            brew update      
-            brew install osquery
-            osqueryi --json 'select cpu_type, cpu_brand, hardware_vendor, hardware_model from system_info;' > system_info.json
-            cat system_info.json 
-      - name: "check on brew version"
+            chmod +x /scripts/install_osquery.sh
+            sh /scripts/install_osquery.sh
         run: brew --version   #Homebrew 2.5.12   
       - name: "brew cask list"
         run:   brew list --cask #Warning: Calling brew cask list is deprecated! Use brew list [--cask] instead.
