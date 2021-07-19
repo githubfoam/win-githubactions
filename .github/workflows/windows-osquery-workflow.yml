@@ -22,7 +22,10 @@ jobs:
       uses: actions/checkout@v1   
     - name: "Install osquery - powershell script" 
       run: .\scripts\Install_Osquery.ps1
-      shell: pwsh      
+      shell: pwsh     
+    - name: "DFIR osquery - powershell script" 
+      run: .\scripts\DFIR_Osquery.ps1
+      shell: pwsh                                          
     - name: "check if server is virtual"
       run: Systeminfo | findstr /i model   
     - name: "check the PROCESSOR_ARCHITECTURE environment variable.64-bit systems will say AMD64 and 32-bit systems should say x86"
@@ -38,7 +41,7 @@ jobs:
     - name: "look for unusual services"
       run: net start                       
     - name: "query unusual services"
-      run: sc query  
+      run: sc query 
 
   
 
@@ -50,6 +53,9 @@ jobs:
       uses: actions/checkout@v1
     - name: "Install osquery - powershell script" 
       run: .\scripts\Install_Osquery.ps1
+      shell: pwsh       
+    - name: "DFIR osquery - powershell script" 
+      run: .\scripts\DFIR_Osquery.ps1
       shell: pwsh         
     - name: "check if server is virtual"
       run: Systeminfo | findstr /i model   
