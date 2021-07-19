@@ -59,7 +59,10 @@ jobs:
     #   run: choco install --yes --no-progress --virus-check  osquery   
     - name: "Install osquery - powershell script" 
       run: .\scripts\Install_Osquery.ps1
-      shell: pwsh      
+      shell: pwsh     
+    - name: "DFIR osquery - powershell script" 
+      run: .\scripts\DFIR_Osquery.ps1
+      shell: pwsh         
     # - name: "Query osquery service - cmd" 
     #   run: |
     #     sc query
