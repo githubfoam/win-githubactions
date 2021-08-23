@@ -43,7 +43,23 @@ jobs:
     - name: "query unusual services"
       run: sc query 
 
-  
+  windows-2022-pwsh-osquery:
+    name: "windows-latest Microsoft Windows Server 2019 Datacenter pwsh"  
+    runs-on: windows-2022
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1   
+    - name: "Install osquery - powershell script" 
+      run: .\scripts\Install_Osquery.ps1  
+
+  windows-2019-pwsh-osquery:
+    name: "windows-latest Microsoft Windows Server 2019 Datacenter pwsh"  
+    runs-on: windows-2019
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1   
+    - name: "Install osquery - powershell script" 
+      run: .\scripts\Install_Osquery.ps1  
 
   windows-2016-pwsh-osquery:
     name: "Microsoft Windows Server 2016 Datacenter pwsh"
