@@ -9,16 +9,44 @@ Write-Output $VerbosePreference
 docker version
 docker pull kalilinux/kali-rolling
 docker images ls 
+# all the images below do not come with the “default” metapackage. You will need to apt update && apt -y install kali-linux-headless
+# docker run --tty --interactive kalilinux/kali-rolling /bin/bash
+
+# docker run -ti kalilinux/kali-rolling /bin/bash
+# https://www.kali.org/blog/kali-linux-metapackages/
+# apt install kali-tools-top10
+#--------------------------------------------------------------------------------------------------------
+
+$dw = @{ HostAddress = 'npipe://./pipe/win_engine' }
+Request-ContainerImage @dw microsoft/nanoserver
+Request-ContainerImage ubuntu
+
+docker image ls 
+
+$w = New-Container @dw microsoft/nanoserver | Start-Container @dw -Passthru
+$session = New-PSSession -Name Nano -ContainerId $w.ID
+
+# enter and `exit` , or use Copy-Item -ToSession
+Enter-PSSession $session
+# Copy-Item -ToSession $session
 
 # Installing PowerShell on Ubuntu
 $u = New-Container ubuntu -Input -Terminal -name psu | Start-Container -Passthru
 Start-ContainerProcess $u apt-get update
 Start-ContainerProcess $u apt-get install libicu55 libunwind8
 
-# all the images below do not come with the “default” metapackage. You will need to apt update && apt -y install kali-linux-headless
-# docker run --tty --interactive kalilinux/kali-rolling /bin/bash
+# download here and push in, just to show how:
+Invoke-WebRequest https://github.com/PowerShell/PowerShell/releases/download/v6.0.0-alpha.9/powershell_6.0.0-alpha.9-1ubuntu1.16.04.1_amd64.deb -OutFile ~/Downloads/powershell_6.0.0-alpha.9-1ubuntu1.16.04.1_amd64.deb
+Copy-ContainerFile $u ~/Downloads/powershell_6.0.0-alpha.9-1ubuntu1.16.04.1_amd64.deb -Destination /home -ToContainer 
 
-# docker run -ti kalilinux/kali-rolling /bin/bash
+# Install it using dpkg -i
+Start-ContainerProcess $u dpkg '-i' /home/powershell_6.0.0-alpha.9-1ubuntu1.16.04.1_amd64.deb
+
+# docker exec -it psu powershell
+# docker attach psu
+
+
+#--------------------------------------------------------------------------------------------------------
 
 # Write-Output "displays a list of running services."
 # tasklist | findstr "osqueryd.exe"

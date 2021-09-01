@@ -1,0 +1,14 @@
+FROM ubuntu:16.04
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        libicu55 \
+        libunwind8  \
+    && URL=$(curl https://api.github.com/repos/PowerShell/PowerShell/releases/latest | grep browser_download_url.*ubuntu.*16\.04 | cut -d '"' -f 4) \
+    && curl -o ./powershell.deb -L $URL \
+    && dpkg -i ./powershell.deb \
+    && apt-get remove -y \   
+        ca-certificates \
+        curl \
+    && rm ./powershell.deb \
+    && rm -rf /var/lib/apt/lists/*
