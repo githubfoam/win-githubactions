@@ -10,6 +10,16 @@ docker version
 docker pull kalilinux/kali-rolling
 docker images ls 
 
+# Installing PowerShell on Ubuntu
+$u = New-Container ubuntu -Input -Terminal -name psu | Start-Container -Passthru
+Start-ContainerProcess $u apt-get update
+Start-ContainerProcess $u apt-get install libicu55 libunwind8
+
+# all the images below do not come with the “default” metapackage. You will need to apt update && apt -y install kali-linux-headless
+# docker run --tty --interactive kalilinux/kali-rolling /bin/bash
+
+# docker run -ti kalilinux/kali-rolling /bin/bash
+
 # Write-Output "displays a list of running services."
 # tasklist | findstr "osqueryd.exe"
 
