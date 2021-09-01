@@ -7,7 +7,8 @@ Write-Output $VerbosePreference
 #--------------------------------------------------------------------------------------------------------
 
 docker version
-docker run hello-world
+docker pull kalilinux/kali-rolling
+docker images ls 
 
 # Write-Output "displays a list of running services."
 # tasklist | findstr "osqueryd.exe"
