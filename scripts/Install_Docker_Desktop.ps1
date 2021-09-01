@@ -7,6 +7,7 @@ Write-Output $VerbosePreference
 #--------------------------------------------------------------------------------------------------------
 
 docker version
+docker run hello-world
 
 # Write-Output "displays a list of running services."
 # tasklist | findstr "osqueryd.exe"
