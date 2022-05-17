@@ -13,7 +13,7 @@ on:
 
 jobs:
 
-
+# The Windows 2016 environment is deprecated
   windows-2016-pwsh-osquery:
     name: "Microsoft Windows Server 2016 Datacenter pwsh"
     runs-on: windows-2016

@@ -1,8 +1,11 @@
 # win-githubactions
 
-[![windows osquery CI workflow](https://github.com/githubfoam/win-githubactions/actions/workflows/windows-osquery-workflow.yml/badge.svg?branch=main)](https://github.com/githubfoam/win-githubactions/actions/workflows/windows-osquery-workflow.yml)
+[![latest osquery CI workflow](https://github.com/githubfoam/win-githubactions/actions/workflows/latest-osquery-wf.yml/badge.svg)](https://github.com/githubfoam/win-githubactions/actions/workflows/latest-osquery-wf.yml)  
 
-win osquery
+[![2022 osquery CI workflow](https://github.com/githubfoam/win-githubactions/actions/workflows/2022-osquery-wf.yml/badge.svg)](https://github.com/githubfoam/win-githubactions/actions/workflows/2022-osquery-wf.yml)  
+[![2019 osquery CI workflow](https://github.com/githubfoam/win-githubactions/actions/workflows/2019-osquery-wf.yml/badge.svg)](https://github.com/githubfoam/win-githubactions/actions/workflows/2019-osquery-wf.yml)  
+[![2016 osquery CI workflow](https://github.com/githubfoam/win-githubactions/actions/workflows/2016-osquery-wf.yml/badge.svg)](https://github.com/githubfoam/win-githubactions/actions/workflows/2016-osquery-wf.yml)  
+
 ~~~~
 Check the processes that have a deleted executable
 SELECT * FROM processes WHERE on_disk = 0;
@@ -51,5 +54,7 @@ predefined tables
 https://github.com/google/santa
 https://github.com/groob/moroz
 https://github.com/zentralopensource/zentral
+
+https://github.com/actions/virtual-environments
 
 ~~~~
