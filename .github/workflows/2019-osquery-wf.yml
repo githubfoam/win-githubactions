@@ -1,0 +1,47 @@
+
+name: "2019 osquery CI workflow"
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+      # https://crontab.guru/
+      # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
+      - cron:  '0 0 * * FRI' ##execution of a task in the first minute of the month  
+
+
+
+jobs:
+
+
+
+
+  windows-2019-pwsh-osquery:
+    name: "Microsoft Windows Server 2019 Datacenter pwsh"  
+    runs-on: windows-2019
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1   
+    - name: "check if server is virtual"
+      run: Systeminfo | findstr /i model   
+    - name: "check the PROCESSOR_ARCHITECTURE environment variable.64-bit systems will say AMD64 and 32-bit systems should say x86"
+      run: wmic OS get OSArchitecture     
+    - name: "osfingerprinting"
+      run: systeminfo | more  
+    - name: "display all processes, executable path"
+      run: wmic process list full         
+    - name: "list of running services"
+      run: tasklist         
+    - name: "list of all processes along with their corresponding PID, and services that are tied to them"
+      run: tasklist /svc  
+    - name: "look for unusual services"
+      run: net start                       
+    - name: "query unusual services"
+      run: sc query      
+    - name: "Install osquery - powershell script" 
+      run: .\scripts\Install_Osquery.ps1  
+    - name: "DFIR osquery - powershell script" 
+      run: .\scripts\DFIR_Osquery.ps1
+      shell: pwsh
+
+      
